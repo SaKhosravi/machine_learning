@@ -5,10 +5,18 @@ __pycache__/
 
 # C extensions
 *.so
-
+.idea
 # Distribution / packaging
 .Python
 build/
+code/.idea
+code/venv
+.gitignore.bak
+.gitignore
+code/knn/__pycache__/
+code/perceptron/__pycache__/
+code/utils/__pycache__/
+
 develop-eggs/
 dist/
 downloads/
