@@ -1,10 +1,11 @@
 import numpy as np
 from utils.distance import Distance
+from interface import Interface
 
 """
-simple knn implementation
+simple Knn implementation
 """
-class KNN_Classifier(Distance):
+class KNN_Classifier(Interface,Distance):
     def __init__(self, k):
         self.k = k
         self.x_train = None
@@ -17,13 +18,20 @@ class KNN_Classifier(Distance):
 
     def predict(self, x_test):
         y_preds = list()
-        for sample in x_test:
+        print(np.shape(x_test))
+        for index, sample in enumerate( x_test):
             k_neighbors_label = self.get_k_neighbors_label(sample)
             # print(distances)
             # nearest_neighbor_ids = distances.argsort()[:self.k]
             # k_neighbors_label = self.y_train[nearest_neighbor_ids]
-            y_preds.append(self.voting(k_neighbors_label))
-        return y_preds
+            y_pred=self.voting(k_neighbors_label)
+            y_preds.append(y_pred)
+
+        return np.array(y_preds)
+
+    def loss(self,y_true,y_pred):
+        loss_value=self.MAE(y_true,y_pred)
+        return loss_value
 
     def voting(self, labels):
         max_voting = np.bincount(labels).argmax()
@@ -38,3 +46,5 @@ class KNN_Classifier(Distance):
         nearest_neighbor_ids = distances.argsort()[:self.k]
         k_neighbors_label = self.y_train[nearest_neighbor_ids]
         return k_neighbors_label
+
+

@@ -2,7 +2,7 @@ import numpy as np
 from pandas import DataFrame
 from sklearn.datasets import make_blobs
 from sklearn.model_selection import train_test_split
-
+import matplotlib.pyplot as plt
 
 class GenerateDataSetBlob():
     def __init__(self, ):
@@ -30,3 +30,12 @@ class GenerateDataSetBlob():
         df = DataFrame(data=self.X, columns=columns)
         df[target_name] = self.y
         return df
+
+    def plot_dataSet(self,X,y,colors):
+        # scatter plot, dots colored by class value
+        df = DataFrame(dict(x=X[:, 0], y=X[:, 1], label=y))
+        fig, ax = plt.subplots()
+        grouped = df.groupby('label')
+        for key, group in grouped:
+            group.plot(ax=ax, kind='scatter', x='x', y='y', label=key,color=colors[key])
+        plt.show()
