@@ -25,9 +25,6 @@ class PlotDB:
         ax.set_yticks(())
         ax.set_title(title)
         ax.legend()
-        p=r"C:\Users\sadeg\Documents\my_calss\ml\machine_learning\code\knn\iamges"
-        name="{}.png".format(self.model_name)
-        # plt.savefig(name)
         plt.show()
 
     def make_meshgrid(self,x, y, h=.02):

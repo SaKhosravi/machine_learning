@@ -3,8 +3,8 @@ from abc import abstractmethod
 from utils.weights import Weights
 from utils.loss import Loss
 from utils.activations import Activations
-
-class Interface(Weights,Loss,Activations):
+from utils.metric import Metric
+class Interface(Weights,Loss,Activations,Metric):
     @abstractmethod
     def __init__(self):
         pass
