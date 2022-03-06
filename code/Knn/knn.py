@@ -1,13 +1,17 @@
 import numpy as np
-from utils.distance import Distance
+
 from interface import Interface
+from utils.distance import Distance
 
 """
 simple Knn implementation
 """
 class KNN_Classifier(Interface,Distance):
-    def __init__(self, k):
+    def __init__(self, k, evaluate_metric):
         self.k = k
+
+        self.evaluate = getattr(globals()["Metrics"](), evaluate_metric)
+
         self.x_train = None
         self.y_train = None
         # self.distance = Distance()
