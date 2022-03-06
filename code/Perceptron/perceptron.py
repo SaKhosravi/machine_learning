@@ -1,7 +1,7 @@
 import numpy as np
 from interface import Interface
 from utils.loss import Loss
-from utils.metric import Metric
+from utils.metrics import Metrics
 
 
 class MyPerceptron(Interface):
@@ -11,7 +11,7 @@ class MyPerceptron(Interface):
         self.lr = learning_rate
 
         self.loss = getattr(globals()["Loss"](), loss_function)
-        self.evaluate = getattr(globals()["Metric"](), evaluate_metric)
+        self.evaluate = getattr(globals()["Metrics"](), evaluate_metric)
 
         self._weights = None
         self._bias = 0

@@ -1,6 +1,6 @@
 import numpy as np
 from pandas import DataFrame
-from sklearn.datasets import make_blobs, make_moons
+from sklearn.datasets import make_blobs, make_moons, make_circles, make_classification
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 
@@ -25,6 +25,15 @@ class GenerateDataSetBlob:
         self.X = np.array(X)
         self.y = np.array(y)
         return X, y
+
+
+    def make_circles(self, n_sample, noise, factor):
+        X, y = make_circles(n_samples=n_sample, noise=noise, factor=factor, random_state=0)
+        X, y = np.array(X), np.array(y)
+        self.X = X
+        self.y = y
+        return X, y
+
 
     def train_test_split(self, X, y, test_size):
         x_train, x_test, y_train, y_test = train_test_split(X, y,
